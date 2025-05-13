@@ -8,12 +8,12 @@
   ],
   "env": {
     "NODE_ENV": "production",
-    "AWS_EXECUTION_ENV": "AWS_LAMBDA" // This simulates the Lambda environment if necessary
-  },
+    "AWS_EXECUTION_ENV": "AWS_LAMBDA" 
+    
   "functions": {
     "api/screenshot.js": {
-      "memory": 1024,  // Increase memory for Playwright (optional, depending on your use case)
-      "maxDuration": 60 // Time limit in seconds (adjust based on your expected task duration)
+      "memory": 1024,
+      "maxDuration": 60 
     }
   }
 }
