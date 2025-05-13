@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     }
 
     text {
-      font-family: 'UnifontExMono', monospace;
+      font-family: 'UnifontExMono';
       font-size: 12px;
       fill: white;
       margin-left: 2px;
