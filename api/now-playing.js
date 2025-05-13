@@ -16,10 +16,16 @@ export default async function handler(req, res) {
     const svg = `
 <svg width="305" height="50" xmlns="http://www.w3.org/2000/svg">
   <style>
+    @font-face {
+      font-family: 'UnifontExMono';
+      src: url('/public/Unifontexmono-2vrqo.ttf');
+    }
+
     text {
-      font-family: monospace;
+      font-family: 'UnifontExMono', monospace;
       font-size: 12px;
       fill: white;
+      margin-left: 2px;
     }
     a {
       text-decoration: none;
