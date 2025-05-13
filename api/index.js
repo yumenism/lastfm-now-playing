@@ -1,14 +1,14 @@
-import puppeteer from 'puppeteer-core';
-import chromium from 'chrome-aws-lambda';
-import { executablePath as localExecutablePath } from 'puppeteer'; // Fallback
+const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
+const { executablePath: localExecutablePath } = require('puppeteer');
 
-export default async function handler(req, res) {
-  const testUrl =https:'https://lastfm-now-playing-omega.vercel.app';
-  const isProd = !!process.env.AWS_EXECUTION_ENV; // True on real Vercel Lambda
+module.exports = async function handler(req, res) {
+  const testUrl = 'https://lastfm-now-playing-omega.vercel.app';
+  const isProd = !!process.env.AWS_EXECUTION_ENV;
 
   const executablePath = isProd
     ? await chromium.executablePath
-    : localExecutablePath(); // fallback for dev/local
+    : localExecutablePath();
 
   if (!executablePath) {
     console.error('Executable path is not available');
@@ -38,4 +38,4 @@ export default async function handler(req, res) {
     console.error('Error during Puppeteer operation:', error);
     res.status(500).send('Error during Puppeteer operation');
   }
-}
+};
