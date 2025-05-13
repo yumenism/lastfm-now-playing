@@ -1,0 +1,12 @@
+{
+  "name": "lastfm-screenshot",
+  "version": "1.0.0",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0",
+    "@sparticuz/chromium": "^127.0.6533.88"
+  }
+}
