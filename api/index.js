@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer-core';
 
 export default async function handler(req, res) {
   const user = 'yumenism';
-  const widgetUrl = `https://${req.headers.host}/index.html?user=${user}`;
+  const widgetUrl = `https://lastfm-now-playing-omega.vercel.app/`;
 
   // Resolve the executablePath properly
   const executablePath = await chromium.executablePath;
