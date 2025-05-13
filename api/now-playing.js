@@ -26,10 +26,10 @@ export default async function handler(req, res) {
     }
   </style>
   <image href="https://file.garden/ZRYtsnIP2EXOR4Kw/Site%20Files/musicplayer.png" x="0" y="0" height="50" width="305" />
-  <a xlink:href="${trackUrl}" target="_blank">
+  <a href="${trackUrl}" target="_blank">
     <text x="55" y="22">${trackName}</text>
   </a>
-  <a xlink:href="${artistUrl}" target="_blank">
+  <a href="${artistUrl}" target="_blank">
     <text x="55" y="38">${artistName}</text>
   </a>
 </svg>`;
