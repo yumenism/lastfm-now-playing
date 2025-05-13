@@ -1,15 +1,12 @@
 {
-  "name": "playwright-vercel",
+  "name": "lastfm-now-playing",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vercel dev", 
-    "deploy": "vercel --prod" 
+    "dev": "vercel dev",
+    "start": "node api/now-playing.js"
   },
   "dependencies": {
-    "playwright": "^1.23.0",
-    "playwright-aws-lambda": "^1.0.0"
-  },
-  "engines": {
-    "node": "16.x"
+    "node-fetch": "^3.4.0"
   }
 }
