@@ -24,7 +24,8 @@ export default async function handler(req, res) {
           src: url('/public/Unifontexmono-2vrqo.ttf');
         }
         text {
-          font-family: 'UnifontExMono', monospace;
+          font-family: 'UnifontExMono';
+          margin-left: 2px;
           font-size: 12px;
           fill: white;
         }
