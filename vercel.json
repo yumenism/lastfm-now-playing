@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "functions": {
-    "api/now-playing.js": {
+  "builds": [
+    {
+      "src": "api/now-playing.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/now-playing",
