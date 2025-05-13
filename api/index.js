@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: { width: 320, height: 80 },
-    executablePath: await chromium.executablePath(),
+    executablePath: chromium.executablePath,
     headless: chromium.headless,
   });
 
