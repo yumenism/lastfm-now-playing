@@ -2,7 +2,6 @@
   "version": 2,
   "functions": {
     "api/now-playing.js": {
-      "runtime": "nodejs18.x"
     }
   },
   "routes": [
