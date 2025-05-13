@@ -1,37 +1,41 @@
-import chromium from 'chrome-aws-lambda';
 import puppeteer from 'puppeteer-core';
+import chromium from 'chrome-aws-lambda';
+import { executablePath as localExecutablePath } from 'puppeteer'; // Fallback
 
 export default async function handler(req, res) {
-  const user = 'yumenism';
-  const widgetUrl = `https://lastfm-now-playing-omega.vercel.app/`;
+  const testUrl =https:'https://lastfm-now-playing-omega.vercel.app';
+  const isProd = !!process.env.AWS_EXECUTION_ENV; // True on real Vercel Lambda
 
-  // Resolve the executablePath properly
-  const executablePath = await chromium.executablePath;
+  const executablePath = isProd
+    ? await chromium.executablePath
+    : localExecutablePath(); // fallback for dev/local
 
-  if (!executablePath) {
-    res.status(500).send('Chromium executable path is missing or could not be resolved');
-    return;
-  }
+  if (!executablePath) {
+    console.error('Executable path is not available');
+    res.status(500).send('Executable path could not be resolved');
+    return;
+  }
 
-  const browser = await puppeteer.launch({
-    args: [
-      ...chromium.args,
-      '--no-sandbox',          // Ensure that Chrome can run in Lambda environment
-      '--disable-setuid-sandbox' // Additional flags for AWS Lambda compatibility
-    ],
-    defaultViewport: { width: 320, height: 80 },
-    executablePath, // Directly use the resolved executable path
-    headless: chromium.headless,
-  });
+  try {
+    const browser = await puppeteer.launch({
+      args: chromium.args,
+      executablePath,
+      headless: chromium.headless,
+      defaultViewport: { width: 320, height: 80 },
+    });
 
-  const page = await browser.newPage();
-  await page.goto(widgetUrl, { waitUntil: 'networkidle2' });
+    const page = await browser.newPage();
+    await page.goto(testUrl, { waitUntil: 'networkidle2' });
 
-  const screenshot = await page.screenshot({ type: 'png' });
+    const screenshot = await page.screenshot({ type: 'png' });
 
-  await browser.close();
+    await browser.close();
 
-  res.setHeader('Content-Type', 'image/png');
-  res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
-  res.status(200).send(screenshot);
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+    res.status(200).send(screenshot);
+  } catch (error) {
+    console.error('Error during Puppeteer operation:', error);
+    res.status(500).send('Error during Puppeteer operation');
+  }
 }
