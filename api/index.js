@@ -5,11 +5,11 @@ export default async function handler(req, res) {
   const user = 'yumenism';
   const widgetUrl = `https://${req.headers.host}/index.html?user=${user}`;
 
-  // Log chromium executable path for debugging
-  console.log('Chromium executable path:', chromium.executablePath);
+  // Resolve the executablePath properly
+  const executablePath = await chromium.executablePath;
 
-  if (!chromium.executablePath) {
-    res.status(500).send('Chromium executable path is missing');
+  if (!executablePath) {
+    res.status(500).send('Chromium executable path is missing or could not be resolved');
     return;
   }
 
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       '--disable-setuid-sandbox' // Additional flags for AWS Lambda compatibility
     ],
     defaultViewport: { width: 320, height: 80 },
-    executablePath: chromium.executablePath, // Directly use the executablePath (no await)
+    executablePath, // Directly use the resolved executable path
     headless: chromium.headless,
   });
 
