@@ -1,17 +1,15 @@
 {
-  "name": "lastfm-screenshot",
+  "name": "playwright-vercel",
   "version": "1.0.0",
-  "main": "api/index.js",
   "scripts": {
-    "dev": "vercel dev",
-    "start": "vercel dev"
+    "dev": "vercel dev", 
+    "deploy": "vercel --prod" 
   },
   "dependencies": {
-    "chrome-aws-lambda": "^10.0.0",
-    "puppeteer-core": "^10.1.0",
-    "puppeteer": "^22.8.2"
+    "playwright": "^1.23.0",
+    "playwright-aws-lambda": "^1.0.0"  // Usando a versão otimizadas para Lambda
   },
   "engines": {
-    "node": "18.x"
+    "node": "16.x"  // Certifique-se de usar uma versão compatível com o Vercel
   }
 }
