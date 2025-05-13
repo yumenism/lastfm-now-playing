@@ -1,21 +1,19 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
   "builds": [
     {
-      "src": "api/index.js",
+      "src": "api/screenshot.js",
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/screenshot",
-      "dest": "api/index.js"
+  "env": {
+    "NODE_ENV": "production",
+    "AWS_EXECUTION_ENV": "AWS_LAMBDA" // This simulates the Lambda environment if necessary
+  },
+  "functions": {
+    "api/screenshot.js": {
+      "memory": 1024,  // Increase memory for Playwright (optional, depending on your use case)
+      "maxDuration": 60 // Time limit in seconds (adjust based on your expected task duration)
     }
-  ]
+  }
 }
