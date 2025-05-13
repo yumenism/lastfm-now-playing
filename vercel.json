@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/screenshot.js",
+      "src": "api/index.js",
       "use": "@vercel/node"
     }
   ],
@@ -11,7 +11,7 @@
     "AWS_EXECUTION_ENV": "AWS_LAMBDA"
   },
   "functions": {
-    "api/screenshot.js": {
+    "api/index.js": {
       "memory": 1024,
       "maxDuration": 60
     }
