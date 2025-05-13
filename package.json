@@ -7,6 +7,7 @@
     "start": "node api/now-playing.js"
   },
   "dependencies": {
-    "node-fetch": "^2.6.9"
+    "node-fetch": "^2.6.9",
+    "sharp": "^0.31.2"
   }
 }
